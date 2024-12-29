@@ -11,21 +11,23 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 2
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
   host:
-    - python >=3
+    - python {{ python_min }}
     - pip
     - pytest-runner
   run:
-    - python >=3
+    - python >={{ python_min }}
     - matplotlib-base
     - numpy
     - networkx
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - grave
 
